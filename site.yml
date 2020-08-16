@@ -1,0 +1,3 @@
+---
+# - import_playbook: gather_facts.yml
+- import_playbook: init_swarm.yml

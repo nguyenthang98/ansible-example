@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo 'Setting static IP address for Hyper-V...'
+echo 'Setting static IP address for Hyper-V instance...'
 
 cat << EOF > /etc/netplan/01-netcfg.yaml
 network:

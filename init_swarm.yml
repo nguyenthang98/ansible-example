@@ -1,0 +1,31 @@
+---
+- name: Install Docker Engine
+  hosts: swarm
+  gather_facts: yes
+  become: true
+  roles:
+    - setup-docker
+
+- name: Create Swarm Cluster
+  hosts: swarm-manager
+  gather_facts: no
+  roles:
+    - docker-swarm-init
+  tags:
+    - swarm
+
+- name: Add Manager to Swarm Cluster
+  hosts: swarm_managers
+  gather_facts: no
+  roles:
+    - docker-swarm-add-manager
+  tags:
+    - swarm
+
+- name: Add Worker to Swarm Cluster
+  hosts: swarm_workers
+  gather_facts: no
+  roles:
+    - docker-swarm-add-worker
+  tags:
+    - swarm

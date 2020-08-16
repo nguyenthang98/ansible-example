@@ -1,0 +1,12 @@
+---
+- name: workers leave the swarm
+  hosts: swarm_workers
+  gather_facts: no
+  roles:
+    - docker-swarm-leave
+
+- name: managers leave the swarm
+  gather_facts: no
+  hosts: swarm_managers
+  roles:
+    - docker-swarm-leave
