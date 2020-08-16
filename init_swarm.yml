@@ -9,6 +9,7 @@
 - name: Create Swarm Cluster
   hosts: swarm-manager
   gather_facts: no
+  become: true
   roles:
     - docker-swarm-init
   tags:
@@ -16,6 +17,7 @@
 
 - name: Add Manager to Swarm Cluster
   hosts: swarm_managers
+  become: true
   gather_facts: no
   roles:
     - docker-swarm-add-manager
@@ -24,6 +26,7 @@
 
 - name: Add Worker to Swarm Cluster
   hosts: swarm_workers
+  become: true
   gather_facts: no
   roles:
     - docker-swarm-add-worker
