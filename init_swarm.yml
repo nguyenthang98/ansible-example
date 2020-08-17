@@ -32,3 +32,12 @@
     - docker-swarm-add-worker
   tags:
     - swarm
+
+- name: Add Label to Swam Nodes
+  hosts: swarm
+  gather_facts: no
+  roles:
+    - docker-add-labels
+  tags:
+    - swarm
+    - swarm-labels

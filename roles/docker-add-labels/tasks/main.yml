@@ -1,0 +1,12 @@
+---
+# - name: Debug some values
+#   debug:
+#     var: 
+- name: Setting Labels for docker nodes (Configured in hosts.ini)
+  when: inventory_hostname == "swarm-manager"
+  shell: |
+    for label in {{ hostvars[item]["docker_labels"] }}
+    do
+      docker node update --label-add $label {{ hostvars[item]["hostname"] }}
+    done
+  with_items: "{{ ansible_play_batch }}"
